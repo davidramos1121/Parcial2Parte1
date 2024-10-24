@@ -11,7 +11,7 @@ class ControlPlagas(ProductosControl):
     def __init__(Self,periodoCarencia):
         Self.PeriodoCarencia = periodoCarencia
 
-print("hoal")
+print("hoalaaa")
 class ControlFertilizantes(ProductosControl):
     
     def __init__(Self,fechaUltimaVez):
