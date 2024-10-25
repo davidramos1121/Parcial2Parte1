@@ -38,10 +38,10 @@ class Antibioticos ():
     
     @tipoAnimal.setter
     def tipoAnimal(Self, tipoAnimal):
-        if tipoAnimal.lower() in ['bovinos', 'caprinos', 'porcinos']:
+        if tipoAnimal.lower() in ['bovino', 'caprino', 'porcino']:
             Self.__tipoAnimal = tipoAnimal
         else:
-            raise ValueError("El tipo de animal debe ser 'bovinos', 'caprinos' o 'porcinos'.")
+            raise ValueError("El tipo de animal debe ser 'bovino', 'caprino' o 'porcino'.")
         
     
     @property
