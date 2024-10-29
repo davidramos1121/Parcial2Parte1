@@ -1,30 +1,40 @@
 class Factura(): 
     
-    def __init__(Self,fecha : str,costo : float):
-        Self.__fecha = fecha
-        Self.__costo = costo
-        
-    
+    def __init__(Self):
+           
+        Self.__antibiotico = []        
+        Self.__producto = []   
+
+
     @property
-    def fecha(Self):
-        return Self.__fecha
+    def antibiotico(Self):
+        return Self.__antibiotico
     
-    @fecha.setter
-    def fecha(Self, fecha):
-        if fecha.strip():
-            Self.__fecha = fecha
-        else:
-            raise ValueError("Error en la fecha de la factura")
-        
-        
+    @antibiotico.setter
+    def antibiotico(Self, antibiotico):
+        Self.__antibiotico.append(antibiotico)
+
+
     @property
-    def costo(Self):
-        return Self.__costo
+    def productosControl(Self):
+        return Self.__producto_control
     
-    @fecha.setter
-    def costo(Self, costo):
-        if costo.strip():
-            Self.__fecha = costo
-        else:
-            raise ValueError("Error en la digitacion del costo")
+    @productosControl.setter
+    def producto_control(Self, producto):
+        Self.__producto.append(producto)
         
+
+    def asignarProducto(Self, producto):
+        Self.producto = producto
+        
+
+    def asignarAntibiotico(Self, antibiotico):
+        Self.antibiotico = antibiotico
+
+
+    def compra(Self, producto=None, antibiotico=None):
+        if producto is not None:
+            Self.asignarProducto(producto)
+        if antibiotico is not None:
+            Self.asignarAntibiotico(antibiotico)
+
