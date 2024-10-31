@@ -7,7 +7,6 @@ from Modelo.Facturas import Factura as factura
 from Modelo.Antibioticos import Antibioticos as antibiotico
 from Modelo.ControlFertilizante import ControlFertilizantes as fertilizante
 from Modelo.ControlPlagas import ControlPlagas as controlPlagas
-from Modelo.ProductosControl import ProductosControl as productoControl
 
 class TestFactura(unittest.TestCase):
     
