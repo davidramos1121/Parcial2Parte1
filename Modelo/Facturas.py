@@ -3,7 +3,7 @@ class Factura():
     def __init__(Self):
            
         Self.__antibiotico = []        
-        Self.__producto = []   
+        Self.__productoControl = []   
 
 
     @property
@@ -17,15 +17,15 @@ class Factura():
 
     @property
     def productosControl(Self):
-        return Self.__producto_control
+        return Self.__productoControl
     
     @productosControl.setter
-    def producto_control(Self, producto):
-        Self.__producto.append(producto)
+    def productosControl(Self, productoControl):
+        Self.__productoControl.append(productoControl)
         
 
-    def asignarProducto(Self, producto):
-        Self.producto = producto
+    def asignarProducto(Self, productoControl):
+        Self.productoControl = productoControl
         
 
     def asignarAntibiotico(Self, antibiotico):
