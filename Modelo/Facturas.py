@@ -19,6 +19,6 @@ class Factura:
 
     def imprimirFactura(self):
         print("\nFactura Detallada:")
-        print("Antibioticos comprados:", [antibiotico for antibiotico in self.__antibioticos])
+        print("Antibióticos comprados:", [antibiotico for antibiotico in self.__antibioticos])
         print("Productos de control comprados:", [producto for producto in self.__productosControl])
         print("")

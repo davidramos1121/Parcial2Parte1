@@ -1,87 +1,89 @@
 class Ui:
     def mostrarMenu(self):
-        print("FACTURACION AGRICOLA")
+        print("\nFACTURACION AGRICOLA")
         print("1) Agregar cliente")
         print("2) Agregar producto")
         print("3) Buscar cliente")
         print("4) Vender producto")
         print("5) Salir")
-    
+
     def menu(self):
-        opcion = int(input("Ingrese la opcion: "))
+        opcion = int(input("Ingrese la opción: "))
         return opcion
-    
+
     def agregarCliente(self):
         print("\nAgregar Cliente")
         nombre = input("Ingrese el nombre del cliente: ")
-        cedula = input("Ingrese la cedula del cliente: ")
+        cedula = input("Ingrese la cédula del cliente: ")
         return nombre, cedula
-    
+
+    def buscarClientePorCedula(self):
+        cedula = input("\nIngrese la cédula del cliente a buscar: ")
+        return cedula
+
     def mostrarMenuProducto(self):
         print("\nRegistro de Producto")
         print("1. Control de Fertilizantes")
         print("2. Control de Plagas")
-        print("3. Antibiotico")
-    
-    def menuProducto(self):
-        tipo_producto = int(input("Ingrese la opcion: "))
-        return tipo_producto
+        print("3. Antibiótico")
 
-    
-    def agregarProductoFertilizante(self):
-        nombreProducto = input("Ingrese el nombre del fertilizante: ")
-        registroIca = input("Ingrese el registro ICA del fertilizante: ")
-        frecuencia = input("Ingrese la frecuencia de aplicacion (dias): ")
+    def menuProducto(self):
+        opcion = int(input("Ingrese la opción: "))
+        return opcion
+
+    def agregarFertilizante(self):
+        print("\nAgregar Fertilizante")
+        nombre = input("Ingrese el nombre del fertilizante: ")
+        registro_ica = input("Ingrese el registro ICA del fertilizante: ")
+        frecuencia_aplicacion = input("Ingrese la frecuencia de aplicación (días): ")
         precio = input("Ingrese el precio: ")
-        fechaUltimaVez = input("Ingrese la fecha de ultima aplicacion (dias): ")
-        return nombreProducto, registroIca, frecuencia, precio, fechaUltimaVez
-    
-    def agregarProductoControlPlaga(self):
-        nombreControlPlaga = input("Ingrese el nombre del producto de control de plagas: ")
-        registroIcaControlPlaga = input("Ingrese el registro ICA del control de plagas: ")
-        frecuenciaControlPlaga = input("Ingrese la frecuencia de aplicacion (dias): ")
-        precioControlPlaga = input("Ingrese el precio: ")
-        periodoCarencia = input("Ingrese el periodo de carencia: ")
-        return nombreControlPlaga, registroIcaControlPlaga, frecuenciaControlPlaga, precioControlPlaga, periodoCarencia
-    
+        fecha_ultima_aplicacion = input("Ingrese la fecha de última aplicación (días): ")
+        return nombre, registro_ica, frecuencia_aplicacion, precio, fecha_ultima_aplicacion
+
+    def agregarControlPlagas(self):
+        print("\nAgregar Control de Plagas")
+        nombre = input("Ingrese el nombre del producto de control de plagas: ")
+        registro_ica = input("Ingrese el registro ICA del producto de control de plagas: ")
+        ingrediente_activo = input("Ingrese el ingrediente activo: ")
+        frecuencia_aplicacion = input("Ingrese la frecuencia de aplicación (días): ")
+        precio = input("Ingrese el precio: ")
+        return nombre, registro_ica, ingrediente_activo, frecuencia_aplicacion, precio
+
     def agregarAntibiotico(self):
-        nombreAntibiotico = input("Ingrese el nombre del antibiotico: ")
-        dosis = input("Ingrese la dosis: ")
-        tipoAnimal = input("Ingrese el tipo de animal: ")
-        precioAntibiotico = input("Ingrese el precio del antibiotico: ")
-        return nombreAntibiotico, dosis, tipoAnimal, precioAntibiotico
-    
-    
-    def buscarClientePorCedula(self):
-        cedula = input("Ingrese la cedula del cliente: ")
-        return cedula
-    
-    
+        print("\nAgregar Antibiótico")
+        nombre = input("Ingrese el nombre del antibiótico: ")
+        precio = input("Ingrese el precio: ")
+        frecuencia_aplicacion = input("Ingrese la frecuencia de aplicación (días): ")
+        dosis = input("Ingrese la dosis recomendada: ")
+        return nombre, precio, frecuencia_aplicacion, dosis
+
     def venderProducto(self):
-        cedula = input("Ingrese la cedula del cliente: ")
+        print("\nVenta de Producto")
+        cedula = input("Ingrese la cédula del cliente: ")
         productos = []
         antibioticos = []
 
-        while True:
-            agregar_fertilizante = input("¿Desea agregar un fertilizante? (s/n): ").lower()
-            if agregar_fertilizante == 's':
-                nombre_fertilizante = input("Ingrese el nombre del fertilizante: ")
-                productos.append({"tipo": "fertilizante", "nombre": nombre_fertilizante})
-            elif agregar_fertilizante == 'n':
-                break
-        while True:
-            agregar_control_plaga = input("¿Desea agregar un producto de control de plagas? (s/n): ").lower()
-            if agregar_control_plaga == 's':
-                nombre_control_plaga = input("Ingrese el nombre del producto de control de plagas: ")
-                productos.append({"tipo": "control_plaga", "nombre": nombre_control_plaga})
-            elif agregar_control_plaga == 'n':
-                break
-        while True:
-            agregar_antibiotico = input("¿Desea agregar un antibiotico? (s/n): ").lower()
-            if agregar_antibiotico == 's':
-                nombre_antibiotico = input("Ingrese el nombre del antibiotico: ")
-                antibioticos.append({"nombre": nombre_antibiotico})
-            elif agregar_antibiotico == 'n':
-                break
+        # Recopilar productos
+        while input("¿Desea agregar un fertilizante? (s/n): ").lower() == "s":
+            nombre = input("Ingrese el nombre del fertilizante: ")
+            productos.append({"tipo": "fertilizante", "nombre": nombre})
+        while input("¿Desea agregar un producto de control de plagas? (s/n): ").lower() == "s":
+            nombre = input("Ingrese el nombre del producto de control de plagas: ")
+            productos.append({"tipo": "plaga", "nombre": nombre})
+
+        # Recopilar antibióticos
+        while input("¿Desea agregar un antibiótico? (s/n): ").lower() == "s":
+            nombre = input("Ingrese el nombre del antibiótico: ")
+            antibioticos.append({"nombre": nombre})
 
         return cedula, productos, antibioticos
+
+    def listarFacturas(self):
+        print("\nListando todas las facturas...")
+
+    def buscarFactura(self):
+        numero_factura = input("Ingrese el número de factura a buscar: ")
+        return numero_factura
+
+
+
