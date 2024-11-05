@@ -8,13 +8,16 @@ from CRUD.CRUD_PRODUCTO import CRUDProducto
 from CRUD.CRUD_PRODUCTO_FERTILIZANTE import CRUDFertilizante
 from CRUD.CRUD_CONTROL_PLAGAS import CRUDControlPlagas
 from CRUD.CRUD_ANTIBIOTICOS import CRUDAntibioticos
+from CRUD.CRUD_FACTURA import CRUDFactura
 from UI.UI import Ui
 
 def dirigir():
-    crudCliente = CRUDCliente()
+    crudFactura = CRUDFactura()
+    crudCliente = CRUDCliente(crudFactura)
     crudFertilizante = CRUDFertilizante() 
     crudControlPlagas = CRUDControlPlagas()
     crudAntibioticos = CRUDAntibioticos()
+    
     
     ui = Ui()  
     
@@ -39,34 +42,17 @@ def dirigir():
                 nombreAntibiotico, dosis, tipoAnimal, precioAntibiotico = ui.agregarAntibiotico()
                 crudAntibioticos.agregarAntibioticos(nombreAntibiotico, dosis, tipoAnimal, precioAntibiotico)
                 
-        elif opcion == 3: 
+        elif opcion == 3:
             cedula = ui.buscarClientePorCedula()
-            crudCliente.buscar_por_cedula(cedula) 
+            cliente = crudCliente.buscar_por_cedula(cedula)
+            if cliente:
+                crudFactura.listarFacturas(cliente)
                  
         elif opcion == 4: 
             cedula, productos, antibioticos = ui.venderProducto() 
             factura = crudCliente.venderProducto(cedula, productos, antibioticos)  
 
-            if factura: 
-                print(f"Factura generada para el cliente: {cedula}")
-                print("Productos vendidos:")
-        
-                if productos:
-                    for producto in productos:
-                        print(f"- {producto}")
-                else:
-                    print("No se vendieron productos")
-
-                print("Antibióticos vendidos:")
-                if antibioticos:
-                    for antibiotico in antibioticos:
-                        print(f"- {antibiotico}")
-                else:
-                    print("No se vendieron antibióticos")
-            else:
-                print("No se pudo realizar la venta. Cliente no encontrado.")
-
-        elif opcion == 5:  # Salir del programa
+        elif opcion == 5:  
             print("Saliendo del programa.")
             break
 

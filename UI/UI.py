@@ -63,15 +63,12 @@ class Ui:
         productos = []
         antibioticos = []
 
-        # Recopilar productos
         while input("¿Desea agregar un fertilizante? (s/n): ").lower() == "s":
             nombre = input("Ingrese el nombre del fertilizante: ")
             productos.append({"tipo": "fertilizante", "nombre": nombre})
         while input("¿Desea agregar un producto de control de plagas? (s/n): ").lower() == "s":
             nombre = input("Ingrese el nombre del producto de control de plagas: ")
             productos.append({"tipo": "plaga", "nombre": nombre})
-
-        # Recopilar antibióticos
         while input("¿Desea agregar un antibiótico? (s/n): ").lower() == "s":
             nombre = input("Ingrese el nombre del antibiótico: ")
             antibioticos.append({"nombre": nombre})

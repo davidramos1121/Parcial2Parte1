@@ -1,7 +1,10 @@
+
 class Factura:
-    def __init__(self):
+    def __init__(self,cliente):
+        self.cliente = cliente
         self.__antibioticos = []       
-        self.__productosControl = []     
+        self.__productosControl = []  
+        self.numero = None    
 
     @property
     def antibioticos(self):
