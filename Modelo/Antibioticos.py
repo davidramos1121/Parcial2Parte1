@@ -14,9 +14,9 @@ class Antibioticos ():
     @nombre.setter
     def nombre(Self, nombre):
         if not nombre.strip():
-            raise ValueError("El nombre del antibiótico no puede estar vacío.")
+            raise ValueError("El nombre del antibiotico no puede estar vacio.")
         if not all(char.isalpha() or char.isspace() for char in nombre):
-            raise ValueError("El nombre del antibiótico solo puede contener letras y espacios.")
+            raise ValueError("El nombre del antibiotico solo puede contener letras y espacios.")
         Self.__nombre = nombre
         
     

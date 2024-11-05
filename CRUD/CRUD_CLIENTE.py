@@ -3,40 +3,57 @@ from Modelo.Facturas import Factura
 
 class CRUDCliente:
     
-    def __init__(Self):
-        Self.clientes= []
+    def __init__(self):
+        self.clientes = []  
+   
         
-    def agregarCliente(Self,nombre,cedula):
-        
-        nuevoCliente = Cliente(nombre, cedula)
-        Self.clientes.append(nuevoCliente)
+    def agregarCliente(self, nombre, cedula):
+        nuevoCliente = Cliente(nombre, cedula)  
+        self.clientes.append(nuevoCliente)  
         return nuevoCliente
+  
     
-    def buscarCliente(Self, cedula):
-
-        for cliente in Self.clientes:
+    def buscarCliente(self, cedula):
+        for cliente in self.clientes:
             if cliente.cedula == cedula:
-                return cliente 
-        return None
+                return cliente  
+        return None  
+  
     
-    def venderProducto(Self, cedula, productos=None, antibioticos=None):
-        
-        cliente = Self.buscarCliente(cedula)
+    def venderProducto(self, cedula, productos=None, antibioticos=None):
+        cliente = self.buscarCliente(cedula)
         if cliente:
             factura = Factura()
-
             if productos:
                 for producto in productos:
-                    factura.asignarProducto(producto)
-  
+                    factura.asignarProducto(producto)  
+            else:
+                print("No se vendieron productos.")
             if antibioticos:
                 for antibiotico in antibioticos:
-                    factura.asignarAntibiotico(antibiotico)
-
+                    factura.asignarAntibiotico(antibiotico) 
+            else:
+                print("No se vendieron antibioticos.")
+            cliente.facturas.append(factura)
             print(f"Factura generada para el cliente {cliente.nombre} (Cedula: {cliente.cedula}):")
-            print("Antibioticos comprados:", factura.antibiotico)
-            print("Productos de control comprados:", factura.productosControl)
-            return factura
+            print("")
+            factura.imprimirFactura() 
+            return factura  
+        else:
+            print("No se pudo realizar la venta. Cliente no encontrado.")
+            return None
+ 
+    
+    def buscar_por_cedula(self, cedula):
+        cliente = self.buscarCliente(cedula)
+        if cliente:
+            print(f"Cliente: {cliente.nombre} (Cedula: {cliente.cedula})")
+            if cliente.facturas:
+                print("Facturas asociadas:")
+                for i, factura in enumerate(cliente.facturas):
+                    print(f"\nFactura #{i + 1}")
+                    factura.imprimirFactura()  
+            else:
+                print("No hay facturas asociadas con este cliente.")
         else:
             print("Cliente no encontrado.")
-            return None

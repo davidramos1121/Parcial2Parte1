@@ -16,7 +16,6 @@ def dirigir():
     crudControlPlagas = CRUDControlPlagas()
     crudAntibioticos =  CRUDAntibioticos()
     
-    crudProducto = CRUDProducto()
     ui = Ui()  
     
     while True:
@@ -31,6 +30,7 @@ def dirigir():
             
             ui.mostrarMenuProducto()
             tipo_producto = ui.menuProducto()
+           
             if tipo_producto ==  1:
                 nombreProducto, registroIca, frecuencia, precio, fechaUltimaVez = ui.agregarProductoFertilizante()
                 CrudFertilizante.agregarFertilizante(nombreProducto, registroIca, frecuencia, precio, fechaUltimaVez)
@@ -39,18 +39,35 @@ def dirigir():
                 crudControlPlagas.agregarProductoControlPlagas(nombreControlPlaga, registroIcaControlPlaga, frecuenciaControlPlaga, precioControlPlaga, periodoCarencia)
             elif tipo_producto == 3:
                 nombreAntibiotico,dosis,tipoAnimal,precioAntibiotico = ui.agregarAntibiotico()
-                crudAntibioticos.agregarAntibioticos(nombreControlPlaga, registroIcaControlPlaga, frecuenciaControlPlaga, precioControlPlaga, periodoCarencia)
+                crudAntibioticos.agregarAntibioticos(nombreAntibiotico,dosis,tipoAnimal,precioAntibiotico)
                 
-        elif opcion == 4:
-            
-            cedula, productos, antibioticos = ui.venderProducto()  
-            print(f"Cliente: {cedula}")
+        elif opcion == 3:
+            cedula = ui.buscarClientePorCedula()
+            crudCliente.buscar_por_cedula(cedula) 
+                 
+        elif opcion == 4:  
+         cedula, productos, antibioticos = ui.venderProducto() 
+         factura = crudCliente.venderProducto(cedula, productos, antibioticos)  
+
+         if factura: 
+            print(f"Factura generada para el cliente: {cedula}")
             print("Productos vendidos:")
-            for producto in productos:
-                print(f"- {producto}")
+        
+            if productos:
+                for producto in productos:
+                  print(f"- {producto}")
+            else:
+                  print("No se vendieron productos")
+
             print("Antibioticos vendidos:")
-            for antibiotico in antibioticos:
+            if antibioticos:
+             for antibiotico in antibioticos:
                 print(f"- {antibiotico}")
+            else:
+              print("No se vendieron antibioticos")
+         else:
+           print("No se pudo realizar la venta. Cliente no encontrado.")
+
             
         elif opcion == 5:
             print("Saliendo del programa.")
@@ -58,3 +75,6 @@ def dirigir():
 
 if __name__ == '__main__':
     dirigir()
+
+    
+    

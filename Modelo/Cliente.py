@@ -27,7 +27,7 @@ class Cliente():
         if cedula.isdigit() and len(cedula) >= 10:
             Self.__cedula = cedula
         else:
-            raise ValueError("La cédula debe ser numérica y tener al menos 10 dígitos.")
+            raise ValueError("La cedula debe ser numerica y tener al menos 10 digitos.")
         
     
     @property

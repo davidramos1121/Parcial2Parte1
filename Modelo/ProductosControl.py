@@ -14,7 +14,7 @@ class ProductosControl():
     @nombreProducto.setter
     def nombreProducto(Self,nombreProducto):
          if not nombreProducto.strip():
-            raise ValueError("El nombre del producto no puede estar vacío.")
+            raise ValueError("El nombre del producto no puede estar vacio.")
         
          Self.__nombreProducto = nombreProducto
         
@@ -28,7 +28,7 @@ class ProductosControl():
         if len(registroIca.strip()) > 0:
             Self.__registroIca = registroIca
         else:
-            raise ValueError("El registro ICA no puede estar vacío.")
+            raise ValueError("El registro ICA no puede estar vacio.")
         
     
     @property
